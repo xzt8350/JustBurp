@@ -1,0 +1,19 @@
+#createChef {
+	width: 60%;
+	margin-top: 3%;
+	margin-left: 22.5%;
+
+}
+
+#firstName {
+	float: left;
+	width: 49%;
+}
+
+#lastName {
+	float: right;
+	width: 49%;
+}
+
+
+
