@@ -51,8 +51,8 @@ module.exports = function(passport){
 	});
 
 
-	router.get('/applyChef', isAuthenticated, function(req, res){
-		res.render('applyChef', { user: req.user });
+	router.get('/applyChef', function(req, res){
+		res.render('applyChef', { layout: "layout.hbs", user: req.user });
 	});
 
 

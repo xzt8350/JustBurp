@@ -1,11 +1,38 @@
 <link rel='stylesheet' href='/stylesheets/general_style.css'/>
-<div class="title-bar">
-	<span> <img src="/images/justBurpIcon.png" id="icon"></span>
-	<span id="justBurp">JustBurp</span>
-	
-	<span><a class="success button" id = "becomeChef" href="/becomeChef">Become a Chef</a></span>
+<link rel='stylesheet' href='/stylesheets/chef_signup_style.css'/>
+<div class="primary title-bar">
+    <span><a id="justBurp" href="/">JustBurp</a></span>
+    <span><a class="button title-right" id = "becomeChefButton" href="/applyChef">Become a Chef</a></span>
+    <span><a class="button title-right" id = "signInButton" href="/#">Sign In</a></span>
 </div>
 
+
+<div class="form">
+    <form class="register-form" method="POST" action="/#">
+        <label class="form-label">Sign up to <b>cook</b> with <b>JustBurp</b></label>
+        <label class="form-label">Earn money on your schedule</label>
+        <div>&nbsp</div>
+        <input class ="user_name" type="text" placeholder="First name" id = "first_name" name ='firstName' required/>
+        <input type="text" class ="user_name" placeholder="Last name" id = "last_name" name ='lastName' required/>
+        <p id = "first_name_result" class="invalid_input">First name must contain only alphabetic characters</p>
+        <p id = last_name_result class="invalid_input">Last name must contain only alphabetic characters</p>
+
+        <input type="email" id="signup_email" placeholder="name@example.com" name ='email' required/>
+        <p id = signup_email_result class="invalid_input">Format of email is invalid</p>
+
+        <input type="text"  id="signup_phone" placeholder="Phone number" name ='phone' required/>
+        <p id = "phone_result" class="invalid_input">Format of phone is invalid</p>
+
+        <input type="text"  id="signup_zipcode" placeholder="Zipcode" name ='zipcode' required/>
+        <p id = "zipcode_result" class="invalid_input">Invalid zipcode</p>
+
+        <button class="button" type="submit">Submit</button>
+        <p class="message">Already registered? <a href="#">Sign In</a></p>
+    </form>
+</div>
+
+
+<!--
 
 <div id="wufoo-m19wa53l0fdx0s3">
 Fill out my <a href="https://justburp.wufoo.com/forms/m19wa53l0fdx0s3">online form</a>.
@@ -28,3 +55,4 @@ try { m19wa53l0fdx0s3 = new WufooForm();m19wa53l0fdx0s3.initialize(options);m19w
 var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
 })(document, 'script');</script>
 
+-->
