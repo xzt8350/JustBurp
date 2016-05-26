@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
 
 //db config
 var dbConfig = require('./config/db');
@@ -45,7 +47,11 @@ app.use(flash());
 var initPassport = require('./config/passport/init');
 initPassport(passport);
 
-var routes = require('./routes/index')(passport);
+// TODO (zhenlily): use XOAuth2 token
+var transporter = nodemailer.createTransport(
+    smtpTransport('smtps://zhengff41%40gmail.com:YGRDJClily111@smtp.gmail.com')
+);
+var routes = require('./routes/index')(passport, transporter);
 var users = require('./routes/users');
 //configure passport and session
 app.use('/', routes);
