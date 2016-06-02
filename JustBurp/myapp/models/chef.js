@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var Chef = new mongoose.Schema({
-	email: {
+    email: {
         type: String,
         trim: true
     },
@@ -21,6 +21,10 @@ var Chef = new mongoose.Schema({
         type: String,
         trim: true
     },
+    zipCode: {
+        type: String,
+        trim: true
+    },
     nationality: {
         type: String,
         trim: true
@@ -29,13 +33,14 @@ var Chef = new mongoose.Schema({
         type: String,
         trim: true
     },
-    isOnline : {
+    isOnline: {
         type: Boolean,
-        default: false 
-    }, 
-    lastUpdatedDate: {
-        type: Date
-    }
+        default: false
+    },
+    lastUpdatedDate: Date,
+    menu: {type: mongoose.Schema.ObjectId, ref: 'Menu'},
+    dailyMenus: [{type: mongoose.Schema.ObjectId, ref: 'DailyMenu'}],
+    currentDailyMenu: {type: mongoose.Schema.ObjectId, ref: 'DailyMenu'}
 });
 
 

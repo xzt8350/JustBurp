@@ -1,5 +1,8 @@
 <link rel='stylesheet' href='/stylesheets/general_style.css'/>
 <link rel='stylesheet' href='/stylesheets/chef_view_style.css'/>
+<script type="text/javascript" src="/javascripts/qtyChange.js"></script>
+
+
 <div class="primary title-bar">
     <span><a id="justBurp" href="/">JustBurp</a></span>
     <span><a class="title-right" href="#" id="settingButton"><img src="/images/settings-work-tool.png"></a></span>
@@ -7,19 +10,49 @@
 
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="/chefMain">Pending Orders</a>
-    <a href="/chefDaily">Daily Schedule</a>
+    <a href="/chef">Pending Orders</a>
+    <a href="/chef/chefDaily">Daily Schedule</a>
 </div>
 
 <div id="main">
     <span class="menuButton" onclick="openNav()">☰ Menu</span>
-    <div class="center">
-        <div class="title">Daily Schedule Setup</div>
-        <div class="inline first setup-section">
-            <div class="sub_title">Dishes Setup</div>
+    <div class="col-sm-12 title">Daily Schedule Setup</div>
+    <div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5 setup-section">
+            <div class="col-sm-12 sub_title">Dishes Setup</div>
+            {{#each dishes}}
+                <div class="col-sm-12 dish">
+                    <div class="col-sm-4">
+                        <img class="dishImg" src={{imgUrl}}>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="col-sm-6">
+                            <div class="dishTitle">{{title}}</div>
+                            <div>
+                                Price: $
+                                <input type="text" class="inline price" value={{priceDollar}} />
+                                .
+                                <input type="text" class="inline price" value={{priceCent}} />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            {{> qtyChange}}
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
         </div>
-        <div class="inline setup-section">
-            <div class="sub_title">Cooking Time Setup</div>
+        <div class="col-sm-5 setup-section">
+            <div class="col-sm-12 sub_title">Cooking Time Setup</div>
+            <div>
+                <div>Tomorrow: 5/9/2016</div>
+                <div>From
+                    <input type="time" name="usr_time">
+                </div>
+            </div>
         </div>
+        <div class="col-sm-1"></div>
     </div>
+    <div class="col-sm-12">button</div>
 </div>

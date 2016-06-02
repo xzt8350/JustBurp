@@ -6,12 +6,17 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
+var hbs = require('hbs');
 
 //db config
-var dbConfig = require('./config/db');
+var dbConfig = require('./config/db/db');
+var initTestData = require('./config/db/testDataInit');
 var mongoose = require('mongoose');
 // Connect to DB
-mongoose.connect(dbConfig.url);
+mongoose.connect(dbConfig.url, function (err, db) {
+  if (err) return console.dir(err);
+  initTestData();
+});
 
 var app = express();
 
@@ -21,6 +26,9 @@ app.set('view engine', 'hbs');
 app.set('view options', {
   layout: false
 });
+
+// register partials
+hbs.registerPartials(__dirname + '/views/partials');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -53,9 +61,12 @@ var transporter = nodemailer.createTransport(
 );
 var routes = require('./routes/index')(passport, transporter);
 var users = require('./routes/users');
+var chef = require('./routes/chef');
 //configure passport and session
 app.use('/', routes);
 app.use('/users', users);
+app.use('/chef', chef);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

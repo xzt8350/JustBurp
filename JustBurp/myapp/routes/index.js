@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var chefApplicationGenerator = require('../tools/chefApplicationGenerator.js');
+var chefApplicationGenerator = require('../tools/chefApplicationGenerator');
 
 
 var isAuthenticated = function (req, res, next) {
@@ -77,15 +77,7 @@ module.exports = function(passport, transporter){
 		res.redirect(303, '/applyChefSubmitted');
 	});
 
-	router.get('/chefMain', function (req, res) {
-		res.render('chefViewMainPage', { layout: "layout.hbs", user: req.user });
-	});
-
-	router.get('/chefDaily', function (req, res) {
-		res.render('chefDailySetup', { layout: "layout.hbs", user: req.user });
-	});
-
-	/*Admin handlers*/ 
+	/*Admin handlers*/
 	router.get('/admin', function(req, res) {
     	// Display the Login page with any flash message, if any
 		res.render('adminLogin');

@@ -62,20 +62,19 @@
 
 .title {
     font-size: 30px;
-    margin-bottom: 20px;
-    margin-left: 34%;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 .sub_title {
-    width: 550px;
     text-align: center;
     font-size: 20px;
     padding-top: 10px;
+    margin-bottom: 20px;
 }
 
 .setup-section {
-    width: 550px;
-    height: 650px;
+    height: 440px;
 }
 
 .setup-section:hover {
@@ -89,4 +88,44 @@
 .menuButton {
     font-size:30px;
     cursor:pointer;
+}
+
+.dish {
+    height: 200px;
+    margin-left: 20px;
+}
+
+.dishImg {
+    width: 150px;
+    height: 150px;
+}
+
+.dishTitle {
+    font-size: 20px;
+}
+
+.price {
+    width: 30px;
+    text-align: right;
+}
+
+.qtyChange {
+    text-align: center;
+    padding: 5px;
+}
+
+.qty {
+    width: 45px;
+    height: 25px;
+    text-align: center;
+    margin-left: -5px;
+}
+
+input.qtyplus {
+    width:25px;
+    height:25px;
+}
+input.qtyminus {
+    width:25px;
+    height:25px;
 }
