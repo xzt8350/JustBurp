@@ -35,7 +35,7 @@ hbs.registerPartials(__dirname + '/views/partials');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser('secret'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -57,7 +57,7 @@ initPassport(passport);
 
 // TODO (zhenlily): use XOAuth2 token
 var transporter = nodemailer.createTransport(
-    smtpTransport('smtps://USERNAME:PASSWORD')
+    smtpTransport('smtps://USERNAME%40gmail.com:PASSWORD@smtp.gmail.com')
 );
 var routes = require('./routes/index')(passport, transporter);
 var users = require('./routes/users');
