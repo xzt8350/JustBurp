@@ -12,20 +12,22 @@
         <label class="form-label">Sign up to <b>cook</b> with <b>JustBurp</b></label>
         <label class="form-label">Earn money on your schedule</label>
         <div>&nbsp</div>
-        <input class ="user_name" type="text" placeholder="First name" id = "first_name" name ='firstName' required/>
+        <input type="text" class ="user_name" placeholder="First name" id = "first_name" name ='firstName' required/>
         <input type="text" class ="user_name" placeholder="Last name" id = "last_name" name ='lastName' required/>
-        <p id = "first_name_result" class="invalid_input">First name must contain only alphabetic characters</p>
-        <p id = last_name_result class="invalid_input">Last name must contain only alphabetic characters</p>
-
         <input type="email" id="signup_email" placeholder="name@example.com" name ='email' required/>
-        <p id = signup_email_result class="invalid_input">Format of email is invalid</p>
-
         <input type="text"  id="signup_phone" placeholder="Phone number" name ='phone' required/>
-        <p id = "phone_result" class="invalid_input">Format of phone is invalid</p>
+        <div>&nbsp</div>
+        <input type="text"  id="signup_address_1" placeholder="Street Address" name ='address1' required/>
+        <input type="text"  id="signup_address_2" placeholder="Apt #, Suite, Floor (optional)" name ='address2' />
+        <input type="text"  id="city" placeholder="City" name ='city' required/>
+        <input type="text"  id="signup_zipcode" placeholder="Zip Code" name ='zipCode' required/>
 
-        <input type="text"  id="signup_zipcode" placeholder="Zipcode" name ='zipcode' required/>
-        <p id = "zipcode_result" class="invalid_input">Invalid zipcode</p>
-
+        <select class="car-select" name="vehicle">
+            <option value="car">I can drive to deliver orders.</option>
+            <option value="bike">No cars, but I can bike to deliver.</option>
+            <option value="walk">I got my two feet.</option>
+        </select>
+        ​<textarea placeholder="What I can cook... (2 dishes maximum)" name="dishSummary" rows="10" cols="70" required></textarea>
         <button class="button" type="submit">Submit</button>
         <p class="message">Already registered? <a href="#">Sign In</a></p>
     </form>

@@ -13,7 +13,7 @@ var dbConfig = require('./config/db/db');
 var initTestData = require('./config/db/testDataInit');
 var mongoose = require('mongoose');
 // Connect to DB
-mongoose.connect(dbConfig.url, function (err, db) {
+mongoose.connect(dbConfig.url, function (err) {
   if (err) return console.dir(err);
   initTestData();
 });
@@ -57,7 +57,7 @@ initPassport(passport);
 
 // TODO (zhenlily): use XOAuth2 token
 var transporter = nodemailer.createTransport(
-    smtpTransport('smtps://zhengff41%40gmail.com:YGRDJClily111@smtp.gmail.com')
+    smtpTransport('smtps://USERNAME:PASSWORD')
 );
 var routes = require('./routes/index')(passport, transporter);
 var users = require('./routes/users');

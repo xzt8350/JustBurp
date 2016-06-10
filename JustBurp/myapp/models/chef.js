@@ -40,7 +40,8 @@ var Chef = new mongoose.Schema({
     lastUpdatedDate: Date,
     menu: {type: mongoose.Schema.ObjectId, ref: 'Menu'},
     dailyMenus: [{type: mongoose.Schema.ObjectId, ref: 'DailyMenu'}],
-    currentDailyMenu: {type: mongoose.Schema.ObjectId, ref: 'DailyMenu'}
+    currentDailyMenu: {type: mongoose.Schema.ObjectId, ref: 'DailyMenu'},
+    futureDailyMenu: {type: mongoose.Schema.ObjectId, ref: 'DailyMenu'}
 });
 
 

@@ -3,12 +3,13 @@ var mongoose = require('mongoose');
 var DailyMenuStatus = {
     ACTIVE: 1,
     COMPLETED: 2,
-    DELETED: 3,
+    INACTIVE: 3,
 };
 
 var DailyMenu = new mongoose.Schema({
     dailyDishes: [{type: mongoose.Schema.ObjectId, ref: 'DailyDish'}],
     date: Date,
+    noCooking: Boolean,
     menuBegin: Date,
     menuEnd: Date,
     prepareBegin: Date,
@@ -16,7 +17,7 @@ var DailyMenu = new mongoose.Schema({
         type: Number,
         enum: [DailyMenuStatus.ACTIVE,
             DailyMenuStatus.COMPLETED,
-            DailyMenuStatus.DELETED]
+            DailyMenuStatus.INACTIVE]
     }
 });
 

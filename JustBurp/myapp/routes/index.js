@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var chefApplicationGenerator = require('../tools/chefApplicationGenerator');
+var chefApplicationGenerator = require('../utils/chefApplicationGenerator');
 
 
 var isAuthenticated = function (req, res, next) {

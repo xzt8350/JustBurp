@@ -75,6 +75,9 @@
 
 .setup-section {
     height: 440px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    margin-left: -5px;
+    margin-right: 15px;
 }
 
 .setup-section:hover {
@@ -128,4 +131,45 @@ input.qtyplus {
 input.qtyminus {
     width:25px;
     height:25px;
+}
+
+.timeSetupCard {
+    margin-bottom: 70px;
+    margin-left: 50px;
+    padding-right: 30px;
+}
+
+.date {
+    font-size: 18px;
+}
+
+.noCookingCheckbox {
+    float: right;
+}
+
+.prepareTimeBox {
+    margin-left: 15px;
+}
+
+.time {
+    width: 150px;
+}
+
+.saveButtonContainer {
+    padding-right: 8%;
+    margin-top: 10px;
+}
+
+.button {
+    float: right;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.msgContainer {
+    padding-right: 8%;
+}
+
+.saveMessage {
+    float: right;
 }

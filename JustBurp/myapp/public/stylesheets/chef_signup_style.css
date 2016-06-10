@@ -5,7 +5,7 @@
 }
 
 .form-label {
-    font-size: x-large;
+    font-size: 25px;
     margin-bottom: -10px;
 }
 
@@ -42,4 +42,13 @@
 .confirm_msg_text {
     font-size: medium;
     padding-top: 10px;
+}
+
+.car-select {
+    margin-top: 20px;
+    margin-bottom: -4px;
+}
+
+.button {
+    font-weight: bold;
 }

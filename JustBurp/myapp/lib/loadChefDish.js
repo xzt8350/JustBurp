@@ -7,9 +7,12 @@ var DailyDish = require('../models/dailyDish');
 module.exports = function (req, res, next) {
     // TODO (zhenlily): get chef id from requestContext for query
     Chef.findOne({email: 'test@example.com'}, function (err, chef) {
+        req.chef = chef;
         var dishesContext = [];
         if (chef.currentDailyMenu) {
             DailyMenu.findOne({_id: chef.currentDailyMenu}, function (err, dailyMenu) {
+                req.currentDailyMenu = dailyMenu;
+
                 DailyDish.find({_id:{$in: dailyMenu.dailyDishes}}, function (err, dailyDishes) {
 
                     function render() {
@@ -22,11 +25,12 @@ module.exports = function (req, res, next) {
                     dailyDishes.map(function (dailyDish) {
                         Dish.findOne({_id: dailyDish.dish}, function (err, dish) {
                             dishesContext.push({
+                                dishId: dish._id,
                                 title: dish.title,
                                 imgUrl: dish.imgUrl,
                                 priceDollar: dailyDish.priceDollarPart,
                                 priceCent: dailyDish.priceCentPart,
-                                quantity: dailyDish.quantity
+                                quantity: dailyDish.quantity,
                             });
                             render();
                         });
@@ -38,6 +42,7 @@ module.exports = function (req, res, next) {
                 Dish.find({_id: {$in: menu.dishes}}, function (err, dishes) {
                     dishesContext = dishes.map(function (dish) {
                         return {
+                            dishId: dish._id,
                             title: dish.title,
                             imgUrl: dish.imgUrl,
                             priceDollar: 0,
