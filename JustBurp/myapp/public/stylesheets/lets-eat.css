@@ -1,0 +1,217 @@
+body {
+  background-color: #EFEFEF;
+}
+
+.main-container{
+  position: relative;
+  top: 60px;
+  height: 100%;
+  width: calc(100% - 300px);
+  /*border-style: solid;*/
+}
+
+.shopping-box {
+  position: fixed;
+  right: 0px;
+  top:60px;
+  width: 300px;
+  height: 100%;
+  box-shadow: -5px 0px 10px 1px #aaaaaa;
+  z-index: -1;
+  padding-top: 30px;
+  font-family: "Arial Rounded MT Bold","Helvetica Rounded",Arial,sans-serif;
+}
+
+
+.display-container {
+  height: 100%;
+  flex-grow: 10;
+}
+
+.promotion-banner {
+  height: 125px;
+}
+
+.promotion-banner img {
+  height: 125px;
+  width: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.promotion-slogan {
+  position: absolute;
+  top: 40px;
+  left: 160px;
+  color: white;
+  font-family: "Arial Black","Arial Bold",Gadget,sans-serif;
+  font-size: 28px;
+  text-align: center;
+}
+
+
+.display-entry {
+  display: flex;
+  flex-flow: row;
+  height: 300px;
+  border-bottom: 2px solid;
+  border-color:#797995;
+  box-shadow: -5px 0px 10px 1px #aaaaaa;
+}
+
+.chef-profile {
+  padding-top: 40px;
+  width: 250px;
+  height: 300px;
+  display: flex;
+  flex-flow: row;
+  position: relative;
+  padding-left: 30px;
+}
+
+.chef-photo {
+  margin-left: 20px;
+  width: 150px;
+}
+
+.chef-photo img {
+  height: 150px;
+  width: 150px;
+}
+
+.rating{
+  margin-top: 5px;
+  text-align: center;
+}
+
+
+
+.chef-intro {
+  position: absolute;
+  top: 0px;
+  padding-top: 30px;
+  padding-right: 10px;
+  width: 180px;
+}
+
+.chef-titile {
+  font-family: "Arial Black","Arial Bold",Gadget,sans-serif;
+  font-size: 14px;
+  color: #797995;
+  text-align: center;
+}
+
+.chef-name {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 600;
+  margin-top: -5px;
+  margin-left: 3px;
+  font-size: 20px;
+  color:black;
+}
+
+.food-style{
+  font-family: Futura,"Trebuchet MS",Arial,sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #28B463;
+  text-align: center;
+}
+
+.chef-caption {
+  padding-top: 5px;
+}
+
+.vertical-border {
+ border-left: 2px solid #CCCCCC;
+ position: absolute;
+ top: 15%;
+ bottom: 15%;
+ margin-right: auto;
+ right: 0px;
+}
+
+q {
+  font-size: 16px;
+  font-style: italic;
+}
+
+.rating span {
+  color:  #ff9900;
+}
+
+
+
+
+
+
+.menu-container {
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  width: 700px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.dish-box {
+  margin: 10px auto;
+}
+
+.dish-caption {
+  margin-top: 8px;
+  font-size: 16px;
+  font-family: "Arial Rounded MT Bold","Helvetica Rounded",Arial,sans-serif;
+}
+
+.dish-price {
+  font-size: 16px;
+  color: #f97242;
+  font-family: "Arial Rounded MT Bold","Helvetica Rounded",Arial,sans-serif;
+}
+
+.dish-img {
+  padding-top: 30px;
+}
+
+.dish-img img {
+  width: 272px;
+  height: 168px;
+}
+
+
+
+
+
+
+
+.info-box {
+  height: 300px;
+  width: 330px;
+  display: flex;
+  flex-flow: column;
+  padding-top: 26px;
+  white-space: nowrap;
+}
+
+.tertiary-info {
+  margin: 0px auto;
+  width: 280px;
+  padding: 10px;
+  display: flex;
+  flex-flow: row;
+  font-size: 20px;
+  font-family: "Segoe UI",Frutiger,"Frutiger Linotype","Dejavu Sans","Helvetica Neue",Arial,sans-serif;
+  color: #20214f;
+  text-align: center;
+}
+
+.tertiary-info div {
+  margin: auto;
+}
+
+.info-caption {
+  font-size: 14px;
+  font-family: graphik;
+  opacity: 0.6;
+}

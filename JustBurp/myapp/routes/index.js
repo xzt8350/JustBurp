@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var isAuthenticated = function (req, res, next) {
-	// if user is authenticated in the session, call the next() to call the next request handler 
+	// if user is authenticated in the session, call the next() to call the next request handler
 	// Passport adds this method to request object. A middleware is allowed to add properties to
 	// request and response objects
 	if (req.isAuthenticated())
@@ -11,10 +11,8 @@ var isAuthenticated = function (req, res, next) {
 	res.redirect('/');
 }
 
-
-
 var isAuthenticatedAdmin = function (req, res, next) {
-	// if user is authenticated in the session, call the next() to call the next request handler 
+	// if user is authenticated in the session, call the next() to call the next request handler
 	// Passport adds this method to request object. A middleware is allowed to add properties to
 	// request and response object
 
@@ -27,16 +25,43 @@ var isAuthenticatedAdmin = function (req, res, next) {
 module.exports = function(passport){
 	/* GET login page. */
 	router.get('/', function(req, res) {
-    	// Display the Login page with any flash message, if any
-		res.render('index', { layout: "layout.hbs", message: req.flash('message')});
+    // Display the Login page with any flash message, if any
+
+		if (req.isAuthenticated()) {
+			res.render('index', { layout: "layout.hbs", message: req.flash('message'),
+									login: 'true'});
+		} else {
+			res.render('index', { layout: "layout.hbs", message: req.flash('message')});
+			console.log("Have not log in");
+		}
+
 	});
 
-	/* Handle Login POST */
-	router.post('/login', passport.authenticate('login', {
-		successRedirect: '/mainPage',
-		failureRedirect: '/',
-		failureFlash: true  
-	}));
+	// /* Handle Login POST */
+	// router.post('/login', passport.authenticate('login', {
+	// 	successRedirect: '/',
+	// 	failureRedirect: '/',
+	// 	failureFlash: true
+	// }));
+
+	router.post('/login', function(req, res, next) {
+	  // generate the authenticate method and pass the req/res
+		var link = req.body.link;
+	  passport.authenticate('login', function(err, user, info) {
+	    if (err) { return next(err); }
+	    if (!user) {
+				console.log("could not signin");
+				return res.redirect('/');
+			}
+
+			req.logIn(user, function(err) {
+					if (err) { return next(err); }
+					return res.redirect(link);
+			});
+
+	  })(req, res, next);
+	});
+
 
 	/* Handle Registration POST */
 	router.post('/signup', passport.authenticate('signup', {
@@ -45,9 +70,25 @@ module.exports = function(passport){
 		failureFlash: true
 	}));
 
+
 	/* GET Home Page */
-	router.get('/mainPage', isAuthenticated, function(req, res){
-		res.render('mainPage', { user: req.user });
+	router.get('/lets-eat', function(req, res){
+		if (req.isAuthenticated()) {
+			res.render('lets-eat', { layout: "general-user-layout.hbs", message: req.flash('message'),
+									login: 'true'});
+		} else {
+			res.render('lets-eat', { layout: "general-user-layout.hbs", message: req.flash('message')});
+		}
+	});
+
+	router.post('/lets-eat', function(req, res){
+		console.log("address: ", req.body.address);
+		if (req.isAuthenticated()) {
+			res.render('lets-eat', { layout: "general-user-layout.hbs", message: req.flash('message'),
+									login: 'true'});
+		} else {
+			res.render('lets-eat', { layout: "general-user-layout.hbs", message: req.flash('message')});
+		}
 	});
 
 
@@ -56,8 +97,7 @@ module.exports = function(passport){
 	});
 
 
-
-	/*Admin handlers*/ 
+	/*Admin handlers*/
 	router.get('/admin', function(req, res) {
     	// Display the Login page with any flash message, if any
 		res.render('adminLogin');
