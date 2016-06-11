@@ -1,0 +1,54 @@
+.center {
+    width: 350px;
+    margin: auto;
+    padding-top: 30px;
+}
+
+.form-label {
+    font-size: 25px;
+    margin-bottom: -10px;
+}
+
+.user_name {
+    float: left;
+    width: 49%;
+}
+
+#first_name{
+    margin-right: 2%;
+}
+
+.invalid_input {
+    display:none;
+}
+
+.invalid_input.is-visible {
+    visibility: visible;
+    float: left;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    margin-top: -15px;
+    font-size: 12px;
+    color: #ff3333;
+}
+
+.logo {
+    width: 150px;
+    height: 150px;
+    margin: auto;
+}
+
+.confirm_msg_text {
+    font-size: medium;
+    padding-top: 10px;
+}
+
+.car-select {
+    margin-top: 20px;
+    margin-bottom: -4px;
+}
+
+.button {
+    font-weight: bold;
+}

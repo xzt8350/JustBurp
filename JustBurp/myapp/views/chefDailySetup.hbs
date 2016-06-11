@@ -1,0 +1,73 @@
+<link rel='stylesheet' href='/stylesheets/general_style.css'/>
+<link rel='stylesheet' href='/stylesheets/chef_view_style.css'/>
+<script type="text/javascript" src="/javascripts/qtyChange.js"></script>
+<script type="text/javascript" src="/javascripts/chefDailyTimeSetupCard.js"></script>
+
+<div class="primary title-bar">
+    <span><a id="justBurp" href="/">JustBurp</a></span>
+    <span><a class="title-right" href="#" id="settingButton"><img src="/images/settings-work-tool.png"></a></span>
+</div>
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="/chef">Pending Orders</a>
+    <a href="/chef/chefDaily">Daily Schedule</a>
+</div>
+
+<div id="main">
+    <span class="menuButton" onclick="openNav()">☰ Menu</span>
+    <div class="col-sm-12 title">Daily Schedule Setup</div>
+    <form action="/chef/saveChefDaily" method="POST">
+        <div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-5 setup-section">
+                <div class="col-sm-12 sub_title">Dishes Setup</div>
+                {{#each dishes}}
+                    <input type="hidden" name="dishId" value={{dishId}} />
+                    <input type="hidden" name="previousPriceDollar" value={{priceDollar}} />
+                    <input type="hidden" name="previousPriceCent" value={{priceCent}} />
+                    <input type="hidden" name="previousQuantity" value={{quantity}} />
+
+                    <div class="col-sm-12 dish">
+                        <div class="col-sm-4">
+                            <img class="dishImg" src={{imgUrl}}>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="col-sm-6">
+                                <div class="dishTitle">{{title}}</div>
+                                <div>
+                                    Price: $
+                                    <input type="text" class="inline price" name="priceDollar" value={{priceDollar}} />
+                                    .
+                                    <input type="text" class="inline price" name="priceCent" value={{priceCent}} />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                {{> qtyChange}}
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+            <div class="col-sm-5 setup-section">
+                <div class="col-sm-12 sub_title">Cooking Time Setup</div>
+                <div>
+                    {{#each dates}}
+                        <input type="hidden" name="previousIsNoCooking" value={{isNoCooking}} />
+                        <input type="hidden" name="previousPrepareStartTime" value={{prepareStartTime}} />
+                        <input type="hidden" name="previousStartTime" value={{startTime}} />
+                        <input type="hidden" name="previousEndTime" value={{endTime}} />
+                        {{> chefDailyTimeSetupCard}}
+                    {{/each}}
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+        <div class="col-sm-12 saveButtonContainer">
+            <button class="button" type="submit">Save</button>
+        </div>
+        <div class="col-sm-12 msgContainer">
+            <div class="saveMessage"><b>{{saveMessage}}</b></div>
+        </div>
+    </form>
+</div>

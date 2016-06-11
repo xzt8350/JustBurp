@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.min.css"/>
+<link rel='stylesheet' href='/stylesheets/chef_view_style.css'/>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.min.js"></script>
+
+<script>
+    $(function () {
+        $('.time').timepicker();
+    });
+
+    $(function () {
+        $(".noCookingCheckbox").click(function () {
+            var checkboxNode = $(this).find('input');
+            var isDisable = checkboxNode.is(':checked');
+
+            var isNoCookingCheckedNode = $(this).parent().parent().find(':nth-child(6)').find('input');
+            $(isNoCookingCheckedNode).val(isDisable);
+
+            var prepareStartTimeNode = $(this).parent().parent().find(':nth-child(3)').find('input');
+            var startTimeNode = $(this).parent().parent().find(':nth-child(5)').find(':nth-child(1)').find('input');
+            var endTimeNode = $(this).parent().parent().find(':nth-child(5)').find(':nth-child(2)').find('input');
+            $(prepareStartTimeNode).prop("disabled", isDisable);
+            $(startTimeNode).prop("disabled", isDisable);
+            $(endTimeNode).prop("disabled", isDisable);
+        });
+    });
+</script>
+
+<div class="timeSetupCard">
+    <div>
+        <div class="date"><b>{{dateString}}</b></div>
+        <div class="noCookingCheckbox">
+            <input type="checkbox" {{#if isNoCooking}}checked{{/if}} /> No cooking
+        </div>
+    </div>
+    <div>
+        Prepare:
+    </div>
+    <div class="prepareTimeBox">
+        From
+        <input id="prepareStartTime" type="text" class="time ui-timepicker-input" name="prepareStartTime" value={{prepareStartTime}}
+            {{#if isNoCooking}}disabled{{/if}} />
+    </div>
+    <div>
+        Deliver:
+    </div>
+    <div>
+        <div class="col-sm-6">
+            From
+            <input id="startTime" type="text" class="time ui-timepicker-input" name="startTime" value={{startTime}}
+                {{#if isNoCooking}}disabled{{/if}} />
+        </div>
+        <div class="col-sm-6">
+            To
+            <input id="endTime" type="text" class="time ui-timepicker-input" name="endTime" value={{endTime}}
+                {{#if isNoCooking}}disabled{{/if}} />
+        </div>
+    </div>
+    <div>
+        <input type="hidden" name="isNoCookingChecked" value={{isNoCooking}} />
+    </div>
+</div>

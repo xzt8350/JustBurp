@@ -1,30 +1,34 @@
 <link rel='stylesheet' href='/stylesheets/general_style.css'/>
-<div class="title-bar">
-	<span> <img src="/images/justBurpIcon.png" id="icon"></span>
-	<span id="justBurp">JustBurp</span>
-	
-	<span><a class="success button" id = "becomeChef" href="/becomeChef">Become a Chef</a></span>
+<link rel='stylesheet' href='/stylesheets/chef_signup_style.css'/>
+<div class="primary title-bar">
+    <span><a id="justBurp" href="/">JustBurp</a></span>
+    <span><a class="button title-right" id = "becomeChefButton" href="/applyChef">Become a Chef</a></span>
+    <span><a class="button title-right" id = "signInButton" href="/#">Sign In</a></span>
 </div>
 
 
-<div id="wufoo-m19wa53l0fdx0s3">
-Fill out my <a href="https://justburp.wufoo.com/forms/m19wa53l0fdx0s3">online form</a>.
-</div>
-<div id="wuf-adv" style="font-family:inherit;font-size: small;color:#a7a7a7;text-align:center;display:block;">Use <a href="http://www.wufoo.com/gallery/templates/">Wufoo templates</a> to make your own HTML forms.</div>
-<script type="text/javascript">var m19wa53l0fdx0s3;(function(d, t) {
-var s = d.createElement(t), options = {
-'userName':'justburp',
-'formHash':'m19wa53l0fdx0s3',
-'autoResize':true,
-'height':'677',
-'async':true,
-'host':'wufoo.com',
-'header':'show',
-'ssl':true};
-s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'www.wufoo.com/scripts/embed/form.js';
-s.onload = s.onreadystatechange = function() {
-var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
-try { m19wa53l0fdx0s3 = new WufooForm();m19wa53l0fdx0s3.initialize(options);m19wa53l0fdx0s3.display(); } catch (e) {}};
-var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
-})(document, 'script');</script>
+<div class="center">
+    <form class="apply-form" method="POST" action="/chefSignup">
+        <label class="form-label">Sign up to <b>cook</b> with <b>JustBurp</b></label>
+        <label class="form-label">Earn money on your schedule</label>
+        <div>&nbsp</div>
+        <input type="text" class ="user_name" placeholder="First name" id = "first_name" name ='firstName' required/>
+        <input type="text" class ="user_name" placeholder="Last name" id = "last_name" name ='lastName' required/>
+        <input type="email" id="signup_email" placeholder="name@example.com" name ='email' required/>
+        <input type="text"  id="signup_phone" placeholder="Phone number" name ='phone' required/>
+        <div>&nbsp</div>
+        <input type="text"  id="signup_address_1" placeholder="Street Address" name ='address1' required/>
+        <input type="text"  id="signup_address_2" placeholder="Apt #, Suite, Floor (optional)" name ='address2' />
+        <input type="text"  id="city" placeholder="City" name ='city' required/>
+        <input type="text"  id="signup_zipcode" placeholder="Zip Code" name ='zipCode' required/>
 
+        <select class="car-select" name="vehicle">
+            <option value="car">I can drive to deliver orders.</option>
+            <option value="bike">No cars, but I can bike to deliver.</option>
+            <option value="walk">I got my two feet.</option>
+        </select>
+        ​<textarea placeholder="What I can cook... (2 dishes maximum)" name="dishSummary" rows="10" cols="70" required></textarea>
+        <button class="button" type="submit">Submit</button>
+        <p class="message">Already registered? <a href="#">Sign In</a></p>
+    </form>
+</div>

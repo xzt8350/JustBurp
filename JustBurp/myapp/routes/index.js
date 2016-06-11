@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+var chefApplicationGenerator = require('../utils/chefApplicationGenerator');
+
+
 var isAuthenticated = function (req, res, next) {
 	// if user is authenticated in the session, call the next() to call the next request handler
 	// Passport adds this method to request object. A middleware is allowed to add properties to
@@ -22,7 +25,7 @@ var isAuthenticatedAdmin = function (req, res, next) {
 	res.redirect('/admin');
 }
 
-module.exports = function(passport){
+module.exports = function(passport, transporter){
 	/* GET login page. */
 	router.get('/', function(req, res) {
     // Display the Login page with any flash message, if any
@@ -92,10 +95,31 @@ module.exports = function(passport){
 	});
 
 
-	router.get('/applyChef', isAuthenticated, function(req, res){
-		res.render('applyChef', { user: req.user });
+	router.get('/applyChef', function(req, res){
+		res.render('applyChef', { layout: "layout.hbs", user: req.user });
 	});
 
+	router.get('/applyChefSubmitted', function(req, res){
+		res.render('applyChefSubmitted', { layout: "layout.hbs", user: req.user });
+	});
+
+
+	router.post('/chefSignup', function (req, res) {
+		transporter.sendMail({
+			from: 'zhengff41@gmail.com',
+			to: 'zhengff41@gmail.com',
+			subject: chefApplicationGenerator.getTitle(req),
+			text: chefApplicationGenerator.getContent(req),
+		}, function(err){
+			if(err) {
+				console.error('Unable to send email: ' + err);
+				// TODO (zhenlily): show proper msg for retry
+				return;
+			}
+		});
+
+		res.redirect(303, '/applyChefSubmitted');
+	});
 
 	/*Admin handlers*/
 	router.get('/admin', function(req, res) {
