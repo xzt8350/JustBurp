@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var validator = require('express-validator');
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 var hbs = require('hbs');
@@ -35,6 +36,16 @@ hbs.registerPartials(__dirname + '/views/partials');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(validator({
+  customValidators: {
+    isArray: function (value) {
+      return Array.isArray(value);
+    },
+    isNumberElement: function (value, index) {
+      return !isNaN(value[index]);
+    }
+  }
+}));
 app.use(cookieParser('secret'));
 app.use(express.static(path.join(__dirname, 'public')));
 

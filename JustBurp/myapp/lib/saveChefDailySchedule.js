@@ -7,6 +7,8 @@ var DUMMY_STRING = 'X';
 var SAVE_MSG = 'saveMessage';
 var SUCCEEDS_MSG = 'Schedule saved!';
 var FAIL_MSG = 'Failed to save schedule.';
+var INVALID_TIME_INPUT_MSG = 'Invalid time inputs.';
+var INVALID_PRICE_QUANTITY_INPUT_MSG = 'Invalid price or quantity inputs.';
 
 var isSame = function (array1, array2, selectedIndexes) {
     return (array1.length == array2.length) && array1.every(function (element, index) {
@@ -45,6 +47,44 @@ var noInputChanges = function (req, prepareStartTimes, startTimes, endTimes) {
         && isSame(req.body.previousPriceCent, req.body.priceCent)
         && isSame(req.body.previousQuantity, req.body.quantity)
         && noTimeChanges(req, prepareStartTimes, startTimes, endTimes);
+}
+
+var isValidTimeString = function (timeString) {
+    return /^(\d\d?:\d\d(a|p)m)$/.test(timeString);
+}
+
+var validateInputFail = function (req, prepareStartTimes, startTimes, endTimes, dateSize) {
+    for (var i = 0; i < dateSize; i++) {
+        if (req.body.isNoCookingChecked[i] !== 'true') {
+            if (!(isValidTimeString(prepareStartTimes[i])
+                && isValidTimeString(startTimes[i])
+                && isValidTimeString(endTimes[i]))) {
+                req.flash(SAVE_MSG, INVALID_TIME_INPUT_MSG);
+                return true;
+            }
+        }
+    }
+
+    req.checkBody('priceDollar', 'priceDollar must be an array').isArray();
+    for (var i = 0; i < req.body.priceDollar.length; i++) {
+        req.checkBody('priceDollar', 'priceDollar[' + i + '] must be an number').isNumberElement(i);
+    }
+    req.checkBody('priceCent', 'priceCent must be an array').isArray();
+    for (var i = 0; i < req.body.priceCent.length; i++) {
+        req.checkBody('priceCent', 'priceCent[' + i + '] must be an number').isNumberElement(i);
+    }
+    req.checkBody('quantity', 'quantity must be an array').isArray();
+    for (var i = 0; i < req.body.quantity.length; i++) {
+        req.checkBody('quantity', 'quantity[' + i + '] must be an number').isNumberElement(i);
+    }
+
+    var errors = req.validationErrors();
+    if (errors) {
+        req.flash(SAVE_MSG, INVALID_PRICE_QUANTITY_INPUT_MSG);
+        return true;
+    }
+
+    return false;
 }
 
 var saveDailyDishes = function (req) {
@@ -160,7 +200,11 @@ module.exports = function (req, res, next) {
         return;
     }
 
-    // TODO (zhenlily): add input validation.
+
+    if (validateInputFail(req, prepareStartTimes, startTimes, endTimes, dateSize)) {
+        next();
+        return;
+    }
 
     var dailyDishIds = saveDailyDishes(req);
     var dailyMenuIds = saveDailyMenus(req, dailyDishIds, prepareStartTimes, startTimes, endTimes, dateSize);
