@@ -53,12 +53,20 @@ var isValidTimeString = function (timeString) {
     return /^(\d\d?:\d\d(a|p)m)$/.test(timeString);
 }
 
+var isValidTimeInterval = function (prepareStartTimeString, startTimeString, endTimeString) {
+    var prepareStartTime = dateAndTimeUtil.getDateFromTimeString(prepareStartTimeString, 0);
+    var startTime = dateAndTimeUtil.getDateFromTimeString(startTimeString, 0);
+    var endTime = dateAndTimeUtil.getDateFromTimeString(endTimeString, 0);
+    return prepareStartTime <= startTime && startTime <= endTime;
+}
+
 var validateInputFail = function (req, prepareStartTimes, startTimes, endTimes, dateSize) {
     for (var i = 0; i < dateSize; i++) {
         if (req.body.isNoCookingChecked[i] !== 'true') {
             if (!(isValidTimeString(prepareStartTimes[i])
                 && isValidTimeString(startTimes[i])
-                && isValidTimeString(endTimes[i]))) {
+                && isValidTimeString(endTimes[i])
+                && isValidTimeInterval(prepareStartTimes[i], startTimes[i], endTimes[i]))) {
                 req.flash(SAVE_MSG, INVALID_TIME_INPUT_MSG);
                 return true;
             }
