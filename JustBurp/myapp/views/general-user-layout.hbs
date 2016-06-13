@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='/stylesheets/foundation.css' />
+    <link rel='stylesheet' href='/stylesheets/general-layout.css' />
+    <link rel='stylesheet' href='/stylesheets/signin_form_style.css' />
+    <script type="text/javascript" src="/javascripts/jquery-1.12.3.min.js"></script>
+  </head>
+  <body>
+    <div class="title-bar">
+    	<div id="logo-img"> <img src="/images/justBurpIcon.png"></div>
+    	<div id="justBurp">JustBurp</div>
+
+
+      <form class = "title-bar-form">
+      <div id = "address-box">
+        <div class="title-icon"> <img src="/images/location-icon.png"></div>
+        <div class = "input-container">
+          <input type="text" value = "400 Clementina Street" id = "address-bar" name ='address' onFocus="geolocate()" />
+        </div>
+      </div>
+
+      <div id = "time-box">
+        <div class="title-icon"> <img src="/images/timer-icon.png"></div>
+        <button class="dropbtn" id = "order-time">ASAP</button>
+      </div>
+
+    </form>
+
+    	{{#if login}}
+    		<div onclick="profileDropdown()" id = "profile-icon">
+    			<img src="/images/profile-icon.png" >
+    			<div id="myDropdown" class="profile-dropdown-content">
+    		    <a href="/signout">Log out</a>
+    	  	</div>
+    		</div>
+    	{{else}}
+    			<div id="sign-in-box"> <a href="#"> Sign In </a></div>
+    	{{/if}}
+    	<div id="shopping-bag-icon"> <img src="/images/shopping-bag.png"></div>
+    </div>
+
+
+
+        <div class="cd-user-modal" id = "signin-form">
+          	<div class="cd-user-modal-container">
+        			<div class="form">
+        				<span class = "close_button"><img src="/images/close_button.png" id="close"></span>
+        				<span> <img src="/images/justBurpIcon.png" id="form-icon"></span>
+        			    <form class="register-form" method="POST" action="/signup">
+        					<label><h3>Create Your Account</h3></label>
+        					<input class ="user_name" type="text" placeholder="First name" id = "first_name" name ='firstName' required/>
+        					<input type="text" class ="user_name" placeholder="Last name" id = "last_name" name ='lastName' required/>
+        					<p id = first_name_result class="invalid_input">First name must contain only alphabetic characters</p>
+        					<p id = last_name_result class="invalid_input">Last name must contain only alphabetic characters</p>
+
+        					<input type="text" id="signup_email" placeholder="Email" name ='email' required/>
+        					<p id = signup_email_result class="invalid_input">Format of email is invalid</p>
+
+        					<input type="password"  id="signup_password" placeholder="Password (8 character minimum)" name ='password' required/>
+        					<p id = "password_result" class="invalid_input">Please Enter a at leaset 8 character password</p>
+
+        					<input type="password" id="repeat_signup_password" placeholder="Confrim your password" required/>
+        					<p id = "repeat_password_result" class="invalid_input">Password do not match</p>
+
+        					<button type="submit">Create</button>
+        					<p class="message">Already registered? <a href="#">Sign In</a></p>
+        			    </form>
+        			    <form class="login-form" method="POST" action="/login">
+        			      <label><h3>Sign in with your JustBurp account</h3></label>
+        			      <input type="text" placeholder="Email" name = 'email' required/>
+        			      <input type="password" placeholder="Password" name = 'password' required/>
+        			      <button  type="submit">Login</button>
+        			      <p class="message">Not registered? <a href="#" id ="creatAccount">Create an account</a></p>
+                    <input type="hidden" id= "link" name="link" value="/">
+        			    </form>
+        		  </div>
+        	</div>
+        </div>
+    {{{body}}}
+
+
+    <script type="text/javascript" src="/javascripts/signin_form_action.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN6yrSb42wU3buDhn9Y402kJ_dNQh9sZc&libraries=places&callback=initAutocomplete"
+            async defer></script>
+    <script type="text/javascript" src="/javascripts/autocomplete.js"></script>
+  </body>
+</html>

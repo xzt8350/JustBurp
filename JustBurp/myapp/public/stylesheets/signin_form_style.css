@@ -1,10 +1,26 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-.login-page {
-  width: 360px;
-  padding: 8% 0 0;
-  margin: auto;
+.cd-user-modal {
+	width:100%;
+	height:100%;
+	display: none;
+	position:fixed;
+	top:0px;
+	left:0px;
+	background:rgba(0,0,0,0.75);
+	z-index: 100;
 }
+
+.cd-user-modal-container {
+	position: absolute;
+
+	padding:40px;
+ 	top:50%;
+ 	left:50%;
+ 	-webkit-transform:translate(-50%, -50%);
+ 	transform:translate(-50%, -50%);
+}
+
 .form {
   position: relative;
   z-index: 1;
@@ -23,7 +39,7 @@
   outline: 0;
   background: #f2f2f2;
   margin-top: 25px;
-  padding: 15px;
+  padding-left: 15px;
   box-sizing: border-box;
   font-size: 14px;
 }
@@ -42,7 +58,7 @@
   cursor: pointer;
 }
 .form button:hover,.form button:active,.form button:focus {
-  background: #ff3333;
+  background: #28B463;
 }
 .form .message {
   margin: 15px 0 0;
@@ -101,7 +117,7 @@ h3 {
   margin-bottom: -25.33px;
   text-align: left!important;
   font: bold 36px/45px Helvetica, Sans-Serif;
-  font-size: 22.39px;  
+  font-size: 22.39px;
 }
 
 .close_button {

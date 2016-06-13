@@ -1,53 +1,153 @@
+
 <link rel='stylesheet' href='/stylesheets/homepage_style.css' />
-<link rel='stylesheet' href='/stylesheets/homepage_signin_style.css' />
-<div class="primary title-bar">
-	<span> <img src="/images/justBurpIcon.png" id="icon"></span>
-	<span id="justBurp">Just Burp</span>
-	<span><a class="success button" id = "becomeChef" href="/applyChef">Become a Chef</a></span>
-	<span class="title-right" id= "signIn">Sign in</span>
-	<span class="title-right">Our Mission</span>
+<<<<<<< HEAD
+<link rel='stylesheet' href='/stylesheets/signin_form_style.css' />
+<div class="title-bar">
+	<div id="logo-img"> <img src="/images/justBurpIcon.png"></div>
+	<div id="justBurp">JustBurp</div>
+	<div id="become-chef-btn" href="/applyChef"> <a href="#"> Become a Chef </a></div>
+	{{#if login}}
+		<div onclick="profileDropdown()" id = "profile-icon">
+			<img src="/images/profile-icon.png" >
+			<div id="myDropdown" class="profile-dropdown-content">
+		    <a href="/signout">Log out</a>
+	  	</div>
+		</div>
+	{{else}}
+			<div id="sign-in-box"> <a href="#"> Sign In </a></div>
+	{{/if}}
+	<div id="shopping-bag-icon"> <img src="/images/shopping-bag.png"></div>
 </div>
 
 {{#if message}}
     <div class="alert-danger">{{message}}</div>
 {{/if}}
 
-<div class= 'index-image'>
-	<span> <img src="/images/background.jpg" id = "chinese-food"></span>
-	<div class="front-content">
-		<span id= "front-text">Just Burp! Authentic Food by Authentic People </span> 
-
-		<form>
+<div class= 'main-container'>
+	<div> <img src="/images/background.jpg" id = "img-background"></div>
+	<div class="search-container">
+		<div id= "headline-question">Authentic Food by Authentic People.</div>
+		<form method="POST" action="/lets-eat">
 			<div class="grid-block">
 				<label id= "enter-address">Enter your address below </label>
-				<div class="small-12 medium-6 grid-content" id = "lol">
-					<label class="entry-address">
-						<input type="text" placeholder="eg. Univeristy Road 30">
-					</label>
+
+				<div id = "search-box">
+
+					<div class="dropdown">
+	  				<button class="dropbtn" id = "order-time">ASAP</button>
+	  				<div class="dropdown-content">
+
+								<label id = "day_time"> Day & Time </label>
+								<label style="font-size:11px;"> Schedule an order for later today or tomorrow in advance </label>
+
+								<div class="selectdiv">
+
+								      <select>
+								          <option selected> Today </option>
+								          <option>Tomorrow</option>
+								      </select>
+
+											<select id = "time-selector">
+								          <option selected> 10:00 </option>
+								          <option> 10:30 </option>
+								      </select>
+
+											<select id = "am-pm-selector">
+								          <option selected> AM </option>
+								          <option> PM </option>
+								      </select>
+
+											<div id = "apply-change-btn">
+												<button style="vertical-align: middle; padding-bottom: 18px;"> Apply </button>
+											</div>
+								</div>
+
+	  				</div>
+					</div>
+
+						<label id="entry-address">
+							<input type="text" placeholder="Street address, city, state" onFocus="geolocate()" id = "address-bar" required>
+						</label>
+						<input type="hidden" name="address" id = "address" value="hi">
+					<div class = "order-now">
+						 	<button  id = "get-started">Get Started</button>
+					</div>
+
 				</div>
-				<div class = "order-time">
-					<span id ="order-now"> <a class="alert button" href="#" id= "start">Order Now</a> </span>
-					<span id ="order-tmr"> <a class="warning button" href="#" id= "start">Order Tomorrow 20%</a> </span>
-				</div>
-				<!-- <div id= "referral"><a href="#"> Share JustBurp with a friend, get $5! </a></div> -->
 			</div>
 		</form>
 	</div>
 </div>
 
-<div class= "display-content">
-	<div id="popular-dishes">Popular Dishes<div>
 
-	<div class="display-image"><img src="/images/sample1.jpg"><div class="dish-name">Pork Hock $12</div></div>
-	<div class="display-image"><img src="/images/sample2.jpg"></div>
-	<div class="display-image"><img src="/images/sample3.jpg"></div>
-	<div class="display-image"><img src="/images/sample4.jpg"></div>
+	<div class = "display-section">
+		<h2>  Mid-Autumn Festival</h2>
+		<h5> Mid-Autumn Festival Combo and Free Moon Cake </h4>
+		<!-- <img src="/images/img_gallary/mid-autumn.jpg"> -->
+		<div class = "img-gallary">
+			<div class = "img-frame">
+				<img src="/images/img_gallary/img1.jpg">
+				<div class ="img-caption"> <p> Authentic Moon Cake from NYC Chinatown</p> </div>
+			</div>
+			<div class = "img-frame">
+				<img src="/images/img_gallary/img2.jpg">
+				<div class ="img-caption"> <p> Mid-Autumn Special</p> </div>
+			</div>
+			<div class = "img-frame" style="margin-right:0px;">
+				<img src="/images/img_gallary/img3.jpg">
+				<div class ="img-caption"> <p> Celebrating with Friends like in home</p> </div>
+			</div>
+		</div>
+	</div>
 
-</div>
+	<div class = "business-flow-section">
+		<h2> How to Burp?</h2>
+		<div> <img src="/images/business-flow2.png"> </div>
+	</div>
+
+	<div class = "social-network-section">
+		<h2> Connect With Us </h2>
+
+		<div class = "sn-icons">
+
+			<div class ="social-network-frame" style="margin-left : 0px;">
+				<img src="/images/wechat-qrcode.png">
+				<div class ="img-caption"> <p> Wechat</p> </div>
+			</div>
+
+			<div class ="social-network-frame">
+				<img src="/images/facebook.png">
+				<div class ="img-caption"> <p> Facebook</p> </div>
+			</div>
+
+			<div class ="social-network-frame">
+				<img src="/images/instagram.png">
+				<div class ="img-caption"> <p> Instagram</p> </div>
+			</div>
+
+			<div class ="social-network-frame">
+				<img src="/images/twitter.png">
+				<div class ="img-caption"> <p> Twitter</p> </div>
+			</div>
+
+			<div class ="social-network-frame" style="margin-right: 0px;">
+				<img src="/images/snapchat.jpg">
+				<div class ="img-caption"> <p> Snapchat </p> </div>
+			</div>
+
+	</div>
+
+	</div>
+
+
+	<div class = "footer">
+		<div> <p> @2016 JustBurp Technologies. Inc all rights reserved </p> </div>
+	</div>
+
+
 
 <div class="cd-user-modal" id = "signin-form">
   	<div class="cd-user-modal-container">
-		<div class="login-page">
 			<div class="form">
 				<span class = "close_button"><img src="/images/close_button.png" id="close"></span>
 				<span> <img src="/images/justBurpIcon.png" id="form-icon"></span>
@@ -71,16 +171,21 @@
 					<p class="message">Already registered? <a href="#">Sign In</a></p>
 			    </form>
 			    <form class="login-form" method="POST" action="/login">
-			      <label><h3>Sign in with your Just Burp account</h3></label>
+						<input type="hidden" name="link" value="/">
+			      <label><h3>Sign in with your JustBurp account</h3></label>
 			      <input type="text" placeholder="Email" name = 'email' required/>
 			      <input type="password" placeholder="Password" name = 'password' required/>
 			      <button  type="submit">Login</button>
 			      <p class="message">Not registered? <a href="#" id ="creatAccount">Create an account</a></p>
 			    </form>
 		  </div>
-		</div>
 	</div>
 </div>
 
 
 <script type="text/javascript" src="/javascripts/homepage.js"></script>
+<script type="text/javascript" src="/javascripts/signin_form_action.js"></script>
+<script src="/javascripts/foundation.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN6yrSb42wU3buDhn9Y402kJ_dNQh9sZc&libraries=places&callback=initAutocomplete"
+        async defer></script>
+<script type="text/javascript" src="/javascripts/autocomplete.js"></script>
