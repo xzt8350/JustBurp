@@ -90,7 +90,7 @@ initPassport(passport);
 
 // TODO (zhenlily): use XOAuth2 token
 var transporter = nodemailer.createTransport(
-    smtpTransport('smtps://zhengff41%40gmail.com:YGRDJClily111@smtp.gmail.com')
+    smtpTransport('smtps://USERNAME%40gmail.com:PASS@smtp.gmail.com')
 );
 var routes = require('./routes/index')(passport, transporter);
 var users = require('./routes/users');
