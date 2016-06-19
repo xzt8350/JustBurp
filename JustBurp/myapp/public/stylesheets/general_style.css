@@ -46,3 +46,11 @@
 .inline {
     display: inline-block;
 }
+
+.button {
+    background-color: #57AD57;
+}
+
+.button:hover {
+    background-color: #4e9b4e;
+}
