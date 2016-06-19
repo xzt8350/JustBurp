@@ -1,0 +1,56 @@
+/* title */
+.title-bar {
+    background: #fef200;
+    color: #0a0a0a;
+    padding-top: 15px;
+    height: 60px;
+}
+.title-bar::before, .title-bar::after {
+    content: ' ';
+    display: table; }
+.title-bar::after {
+    clear: both; }
+.title-bar .menu-icon {
+    margin-left: 0.25rem;
+    margin-right: 0.5rem; }
+.title-right {
+    float: right;
+    margin-right: 20px;
+    margin-top: -4px;
+    font-weight: bold;
+}
+
+/* JustBurp */
+#justBurp {
+    font-size: 18px;
+    font-weight: bolder;
+    color: #0a0a0a;
+    margin-left: 20px;
+}
+
+/* signInButton */
+#signInButton {
+    color: #0a0a0a;
+    background: #efe200;
+    border-color: #0a0a0a;
+    border-radius: 5px;
+    width: 100px;
+}
+
+/* becomeChefButton */
+#becomeChefButton {
+    background-color: #0a0a0a;
+    color: #efe200;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.button {
+    background-color: #57AD57;
+}
+
+.button:hover {
+    background-color: #4e9b4e;
+}

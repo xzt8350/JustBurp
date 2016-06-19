@@ -3,12 +3,12 @@
 
 <div class="qtyChange">
     <div class="col-sm-1">
-        <input type='button' value='-' class='qtyminus' field='quantity'/>
+        <input type='button' value='-' class='qtyminus' field='quantity' {{#if isDisabled}}disabled{{/if}} />
     </div>
-    <div class="col-sm-4">
-        <input type='text' name='quantity' value={{quantity}} class='qty'/>
+    <div class="col-sm-4 {{#if applyStyling}} quantityInput{{/if}}" >
+        <input type='text' name='quantity' class='qty' value={{quantity}} {{#if isDisabled}}disabled{{/if}} />
     </div>
     <div class="col-sm-1">
-        <input type='button' value='+' class='qtyplus' field='quantity'/>
+        <input type='button' value='+' class='qtyplus' field='quantity' {{#if isDisabled}}disabled{{/if}} />
     </div>
 </div>

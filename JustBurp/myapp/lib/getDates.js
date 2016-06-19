@@ -8,20 +8,30 @@ module.exports = function (req, res, next) {
     var today = new Date();
     var tmr = dateAndTimeUtil.getDateWithDiff(today, 1);
     var dayAfterTmr = dateAndTimeUtil.getDateWithDiff(today, 2);
-    var dates = [tmr, dayAfterTmr];
+    var dates = [today, tmr, dayAfterTmr];
     var dailyMenus = req.dailyMenus;
 
     var datesSize = dates.length;
     var datesContext = [];
     for (var i = 0; i < datesSize; i++) {
         var noCooking = dailyMenus ? dailyMenus[i].dailyMenu.noCooking : false;
+        var noFreeItem = dailyMenus ? dailyMenus[i].dailyMenu.noFreeItem : false;
+        var isDisabled = noCooking || noFreeItem;
+
+        var freeItemTitle = dailyMenus && !isDisabled && dailyMenus[i].dailyMenu.freeItemTitle ? dailyMenus[i].dailyMenu.freeItemTitle : '';
+        var freeItemQty = dailyMenus && !isDisabled && dailyMenus[i].dailyMenu.freeItemQty ? dailyMenus[i].dailyMenu.freeItemQty : 0;
         var prepareBegin = dailyMenus && !noCooking ? dateAndTimeUtil.getTimeString(dailyMenus[i].dailyMenu.prepareBegin) : DEFAULT_PREPARE_BEGIN_TIME;
         var startTime = dailyMenus && !noCooking ? dateAndTimeUtil.getTimeString(dailyMenus[i].dailyMenu.menuBegin) : DEFAULT_MENU_BEGIN_TIME;
         var endTime = dailyMenus && !noCooking ? dateAndTimeUtil.getTimeString(dailyMenus[i].dailyMenu.menuEnd) : DEFAULT_MENU_END_TIME;
 
         datesContext.push({
+            dateId: 'date' + i,
             dateString: 'Date: ' + dateAndTimeUtil.getDateString(dates[i]),
             isNoCooking: noCooking,
+            isNoFreeItem: noFreeItem,
+            isDisabled: isDisabled,
+            freeItemTitle: freeItemTitle,
+            quantity: freeItemQty,
             prepareStartTime: prepareBegin,
             startTime: startTime,
             endTime: endTime

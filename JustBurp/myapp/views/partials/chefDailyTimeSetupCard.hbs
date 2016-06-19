@@ -7,58 +7,99 @@
 
 <script>
     $(function () {
-        $('.time').timepicker();
-    });
+        $('.prepareStartTime').timepicker({
+            disableTextInput: true,
+            'maxTime': '11:00pm'
+        });
 
-    $(function () {
+        $('.startTime').timepicker({
+            disableTextInput: true,
+            'minTime': '5:00pm',
+            'maxTime': '11:00pm'
+        });
+        $('.endTime').timepicker({
+            disableTextInput: true,
+            'minTime': '5:00pm',
+            'maxTime': '11:00pm'
+        });
+
         $(".noCookingCheckbox").click(function () {
             var checkboxNode = $(this).find('input');
             var isDisable = checkboxNode.is(':checked');
 
-            var isNoCookingCheckedNode = $(this).parent().parent().find(':nth-child(6)').find('input');
+            var isNoCookingCheckedNode = $(this).parent().find(':nth-child(9)').find('input');
             $(isNoCookingCheckedNode).val(isDisable);
 
-            var prepareStartTimeNode = $(this).parent().parent().find(':nth-child(3)').find('input');
-            var startTimeNode = $(this).parent().parent().find(':nth-child(5)').find(':nth-child(1)').find('input');
-            var endTimeNode = $(this).parent().parent().find(':nth-child(5)').find(':nth-child(2)').find('input');
-            $(prepareStartTimeNode).prop("disabled", isDisable);
-            $(startTimeNode).prop("disabled", isDisable);
-            $(endTimeNode).prop("disabled", isDisable);
+            var prepareStartTimeInputNode = $(this).parent().find(':nth-child(3)').find('input');
+            var deliverTimeInputNode = $(this).parent().find(':nth-child(5)').find('input');
+            $(prepareStartTimeInputNode).prop("disabled", isDisable);
+            $(deliverTimeInputNode).prop("disabled", isDisable);
+
+            var freeItemInputNode = $(this).parent().find(':nth-child(8)').find('input');
+            var noFreeItemCheckboxNode = $(this).parent().find(':nth-child(6)').find('input');
+            var isFreeItemDisabled = noFreeItemCheckboxNode.is(':checked');
+            $(noFreeItemCheckboxNode).prop("disabled", isDisable);
+            $(freeItemInputNode).prop("disabled", isDisable || isFreeItemDisabled);
+        });
+
+        $(".noFreeItemCheckbox").click(function () {
+            var checkboxNode = $(this).find('input');
+            var isDisable = checkboxNode.is(':checked');
+
+            var isNoFreeItemCheckedNode = $(this).parent().find(':nth-child(10)').find('input');
+            $(isNoFreeItemCheckedNode).val(isDisable);
+
+            var freeItemInputNode = $(this).parent().find(':nth-child(8)').find('input');
+            $(freeItemInputNode).prop("disabled", isDisable);
         });
     });
 </script>
 
 <div class="timeSetupCard">
-    <div>
-        <div class="date"><b>{{dateString}}</b></div>
-        <div class="noCookingCheckbox">
-            <input type="checkbox" {{#if isNoCooking}}checked{{/if}} /> No cooking
-        </div>
+    <div class="noCookingCheckbox">
+        <input type="checkbox" {{#if isNoCooking}}checked{{/if}} /> No cooking
     </div>
-    <div>
-        Prepare:
-    </div>
+    <div class="subHeader">Taking Order Deadline:</div>
     <div class="prepareTimeBox">
-        From
-        <input id="prepareStartTime" type="text" class="time ui-timepicker-input" name="prepareStartTime" value={{prepareStartTime}}
-            {{#if isNoCooking}}disabled{{/if}} />
-    </div>
-    <div>
-        Deliver:
-    </div>
-    <div>
-        <div class="col-sm-6">
-            From
-            <input id="startTime" type="text" class="time ui-timepicker-input" name="startTime" value={{startTime}}
-                {{#if isNoCooking}}disabled{{/if}} />
-        </div>
-        <div class="col-sm-6">
-            To
-            <input id="endTime" type="text" class="time ui-timepicker-input" name="endTime" value={{endTime}}
+        <div>From Now to</div>
+        <div>
+            <input type="text" class="time ui-timepicker-input prepareStartTime"
+                   name="prepareStartTime" value={{prepareStartTime}}
                 {{#if isNoCooking}}disabled{{/if}} />
         </div>
     </div>
+    <div class="subHeader">Deliver:</div>
+    <div>
+        <div class="col-sm-6">
+            <div>From</div>
+            <div>
+                <input type="text" class="time ui-timepicker-input startTime" name="startTime" value={{startTime}}
+                    {{#if isNoCooking}}disabled{{/if}} />
+            </div>
+        </div>
+        <div class="col-sm-6 endTimeContainer">
+            <div>To</div>
+            <div>
+                <input type="text" class="time ui-timepicker-input endTime" name="endTime" value={{endTime}}
+                    {{#if isNoCooking}}disabled{{/if}} />
+            </div>
+        </div>
+    </div>
+
+    <div class="noFreeItemCheckbox">
+        <input type="checkbox" {{#if isNoFreeItem}}checked{{/if}} {{#if isNoCooking}}disabled{{/if}} /> No free items
+    </div>
+    <div class="subHeader freeItemSubHeader">Free Item Per Order:</div>
+    <div class="freeItemContainer">
+        <div class="col-sm-7">{{> qtyChange applyStyling=true isDisabled=isDisabled}}</div>
+        <div class="col-sm-5"><input type="text" class="freeItemTextInput" name="freeItemTitle" placeholder="Free item title"
+            {{#if isDisabled}}disabled{{/if}} value={{freeItemTitle}} ></div>
+    </div>
+
     <div>
         <input type="hidden" name="isNoCookingChecked" value={{isNoCooking}} />
+    </div>
+    <div>
+        <input type="hidden" name="isNoFreeItemChecked" value={{isNoFreeItem}} />
     </div>
 </div>

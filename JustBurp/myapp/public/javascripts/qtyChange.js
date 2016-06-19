@@ -9,6 +9,7 @@ jQuery(document).ready(function () {
         // If is not undefined
         if (!isNaN(currentVal)) {
             // Increment
+            console.log("cur val: " + currentVal);
             node.val(currentVal + 1);
         } else {
             // Otherwise put a 0 there
