@@ -12,7 +12,10 @@ var DailyMenu = new mongoose.Schema({
     noCooking: Boolean,
     menuBegin: Date,
     menuEnd: Date,
-    prepareBegin: Date,
+    prepareBegin: Date, // TODO (zhenlily): rename it deliveryDeadline, change all corresponding naming
+    noFreeItem: Boolean,
+    freeItemTitle: String,
+    freeItemQty: Number,
     status: {
         type: Number,
         enum: [DailyMenuStatus.ACTIVE,

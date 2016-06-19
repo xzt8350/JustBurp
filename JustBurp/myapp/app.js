@@ -30,6 +30,30 @@ app.set('view options', {
 
 // register partials
 hbs.registerPartials(__dirname + '/views/partials');
+hbs.registerHelper('ifCond', function (v1, operator, v2, options) {
+  console.log("v1: " + v1);
+  console.log("v2: " + v2);
+  switch (operator) {
+    case '==':
+      return (v1 == v2) ? options.fn(this) : options.inverse(this);
+    case '===':
+      return (v1 === v2) ? options.fn(this) : options.inverse(this);
+    case '<':
+      return (v1 < v2) ? options.fn(this) : options.inverse(this);
+    case '<=':
+      return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+    case '>':
+      return (v1 > v2) ? options.fn(this) : options.inverse(this);
+    case '>=':
+      return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+    case '&&':
+      return (v1 && v2) ? options.fn(this) : options.inverse(this);
+    case '||':
+      return (v1 || v2) ? options.fn(this) : options.inverse(this);
+    default:
+      return options.inverse(this);
+  }
+});
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -68,7 +92,7 @@ initPassport(passport);
 
 // TODO (zhenlily): use XOAuth2 token
 var transporter = nodemailer.createTransport(
-    smtpTransport('smtps://USERNAME%40gmail.com:PASSWORD@smtp.gmail.com')
+    smtpTransport('smtps://zhengff41%40gmail.com:YGRDJClily111@smtp.gmail.com')
 );
 var routes = require('./routes/index')(passport, transporter);
 var users = require('./routes/users');

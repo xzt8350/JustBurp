@@ -15,8 +15,8 @@
 </div>
 
 <div id="main">
-    <span class="menuButton" onclick="openNav()">☰ Menu</span>
-    <div class="col-sm-12 title">Daily Schedule Setup</div>
+    <span class="menuButton" onclick="openNav()">☰</span>
+    <div class="col-sm-12 title">&nbsp</div>
     <form action="/chef/saveChefDaily" method="POST">
         <div>
             <div class="col-sm-1"></div>
@@ -29,10 +29,10 @@
                     <input type="hidden" name="previousQuantity" value={{quantity}} />
 
                     <div class="col-sm-12 dish">
-                        <div class="col-sm-4">
+                        <div class="col-sm-4 dishImgContainer">
                             <img class="dishImg" src={{imgUrl}}>
                         </div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-8 dishPriceQtyContainer">
                             <div class="col-sm-6">
                                 <div class="dishTitle">{{title}}</div>
                                 <div>
@@ -42,8 +42,8 @@
                                     <input type="text" class="inline price" name="priceCent" value={{priceCent}} />
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                {{> qtyChange}}
+                            <div class="col-sm-6 qtyChangeContainer">
+                                {{> qtyChange applyStyling=false isDisabled=false}}
                             </div>
                         </div>
                     </div>
@@ -51,13 +51,26 @@
             </div>
             <div class="col-sm-5 setup-section">
                 <div class="col-sm-12 sub_title">Cooking Time Setup</div>
-                <div>
+                <div>&nbsp</div>
+                <div class="panel-group cook-time-collapse-panel" id="accordion">
                     {{#each dates}}
-                        <input type="hidden" name="previousIsNoCooking" value={{isNoCooking}} />
-                        <input type="hidden" name="previousPrepareStartTime" value={{prepareStartTime}} />
-                        <input type="hidden" name="previousStartTime" value={{startTime}} />
-                        <input type="hidden" name="previousEndTime" value={{endTime}} />
-                        {{> chefDailyTimeSetupCard}}
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#{{dateId}}" aria-controls="{{dateId}}" >{{dateString}}</a>
+                                </h4>
+                            </div>
+                            <div id="{{dateId}}" class="panel-collapse collapse {{#ifCond dateId '===' 'date0'}}in{{/ifCond}}" role="tabpanel" aria-labelledby="{{dateId}}">
+                                <input type="hidden" name="previousIsNoCooking" value={{isNoCooking}} />
+                                <input type="hidden" name="previousPrepareStartTime" value={{prepareStartTime}} />
+                                <input type="hidden" name="previousStartTime" value={{startTime}} />
+                                <input type="hidden" name="previousEndTime" value={{endTime}} />
+                                <input type="hidden" name="previousIsNoFreeItem" value={{isNoFreeItem}} />
+                                <input type="hidden" name="previousFreeItemTitle" value={{freeItemTitle}} >
+                                <input type="hidden" name="previousFreeItemQty" value={{quantity}} />
+                                {{> chefDailyTimeSetupCard}}
+                            </div>
+                        </div>
                     {{/each}}
                 </div>
             </div>

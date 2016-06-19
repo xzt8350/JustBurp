@@ -97,6 +97,9 @@ module.exports = function () {
         dailyDishes: [dailyDish1._id, dailyDish2._id],
         date: new Date(2016, 4, 30, 0, 0, 0),
         noCooking: false,
+        noFreeItem: false,
+        freeItemTitle: 'Coke',
+        freeItemQty: 3,
         menuBegin: new Date(2016, 4, 30, 18, 0, 0),
         menuEnd: new Date(2016, 4, 30, 22, 0, 0),
         prepareBegin: new Date(2016, 4, 30, 17, 0, 0),
@@ -106,6 +109,9 @@ module.exports = function () {
         dailyDishes: [dailyDish3._id, dailyDish2._id],
         date: new Date(2016, 4, 28, 0, 0, 0),
         noCooking: false,
+        noFreeItem: false,
+        freeItemTitle: 'Coke',
+        freeItemQty: 2,
         menuBegin: new Date(2016, 4, 28, 17, 0, 0),
         menuEnd: new Date(2016, 4, 28, 21, 0, 0),
         prepareBegin: new Date(2016, 4, 28, 16, 0, 0),
@@ -115,9 +121,22 @@ module.exports = function () {
         dailyDishes: [dailyDish1._id, dailyDish2._id],
         date: new Date(2016, 5, 1, 0, 0, 0),
         noCooking: false,
+        noFreeItem: true,
         menuBegin: new Date(2016, 5, 1, 19, 0, 0),
         menuEnd: new Date(2016, 5, 1, 23, 0, 0),
         prepareBegin: new Date(2016, 5, 1, 18, 0, 0),
+        status: 1
+    });
+    var dailyMenu4 = new DailyMenu({
+        dailyDishes: [dailyDish1._id, dailyDish2._id],
+        date: new Date(2016, 5, 2, 0, 0, 0),
+        noCooking: true,
+        noFreeItem: false,
+        freeItemTitle: 'Rice',
+        freeItemQty: 1,
+        menuBegin: new Date(2016, 5, 3, 19, 30, 0),
+        menuEnd: new Date(2016, 5, 3, 23, 30, 0),
+        prepareBegin: new Date(2016, 5, 2, 15, 0, 0),
         status: 1
     });
 
@@ -130,7 +149,8 @@ module.exports = function () {
         dailyMenu1.save();
         dailyMenu2.save();
         dailyMenu3.save();
-        console.log('3 dailyMenus saved');
+        dailyMenu4.save();
+        console.log('4 dailyMenus saved');
     });
 
     var chef = new Chef({
@@ -147,7 +167,8 @@ module.exports = function () {
         menu: menu._id,
         dailyMenus: [dailyMenu2._id, dailyMenu1._id],
         currentDailyMenu: dailyMenu1._id,
-        futureDailyMenu: dailyMenu3._id
+        tmrDailyMenu: dailyMenu3._id,
+        futureDailyMenu: dailyMenu4._id
     });
 
     Chef.find(function (err, chefs) {

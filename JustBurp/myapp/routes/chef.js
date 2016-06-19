@@ -2,14 +2,14 @@ var express = require('express');
 var router = express.Router();
 var loadChefDish = require('../lib/loadChefDish');
 var loadChefDailyMenu = require('../lib/loadChefDailyMenu');
-var getNextTwoDates = require('../lib/getNextTwoDates');
+var getDates = require('../lib/getDates');
 var saveChefDailySchedule = require('../lib/saveChefDailySchedule');
 
 router.get('/', function (req, res) {
     res.render('chefViewMainPage', {layout: "layout.hbs", user: req.user});
 });
 
-router.get('/chefDaily', loadChefDish, loadChefDailyMenu, getNextTwoDates, function (req, res) {
+router.get('/chefDaily', loadChefDish, loadChefDailyMenu, getDates, function (req, res) {
     res.render('chefDailySetup', {
         layout: "layout.hbs",
         user: req.user,

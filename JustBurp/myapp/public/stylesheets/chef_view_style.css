@@ -95,12 +95,20 @@
 
 .dish {
     height: 200px;
-    margin-left: 20px;
+}
+
+.dishImgContainer {
+    padding-left: 0px;
 }
 
 .dishImg {
-    width: 150px;
+    width: 200px;
     height: 150px;
+    max-width: 200px;
+}
+
+.dishPriceQtyContainer {
+    padding-left: 27px;
 }
 
 .dishTitle {
@@ -110,6 +118,12 @@
 .price {
     width: 30px;
     text-align: right;
+}
+
+.qtyChangeContainer {
+    margin-top: 23px;
+    padding-right: 0px;
+    padding-left: 25px;
 }
 
 .qtyChange {
@@ -134,9 +148,10 @@ input.qtyminus {
 }
 
 .timeSetupCard {
-    margin-bottom: 70px;
+    margin-bottom: 50px;
     margin-left: 50px;
     padding-right: 30px;
+    margin-top: 10px;
 }
 
 .date {
@@ -145,14 +160,22 @@ input.qtyminus {
 
 .noCookingCheckbox {
     float: right;
+    margin-right: 150px;
+}
+
+.time {
+    width: 90px;
+    height: 30px;
+    font-size: 14px;
 }
 
 .prepareTimeBox {
     margin-left: 15px;
 }
 
-.time {
-    width: 150px;
+.ui-timepicker-select {
+    height: 30px;
+    width: 100px;
 }
 
 .saveButtonContainer {
@@ -172,4 +195,45 @@ input.qtyminus {
 
 .saveMessage {
     float: right;
+}
+
+.cook-time-collapse-panel {
+    margin-top: -23px;
+}
+
+.noFreeItemCheckbox {
+    float: right;
+    margin-right: 137px;
+}
+
+.quantityInput {
+    margin-right: -43px;
+}
+
+.freeItemContainer {
+    margin-left: -20px;
+}
+
+.freeItemTextInput {
+    margin-left: -155px;
+    margin-top: 5px;
+    width: 90px;
+    height: 26px;
+}
+
+.subHeader {
+    font-size: 15px;
+}
+
+.freeItemSubHeader {
+    display: inline-block;
+}
+
+.panel {
+    border: none;
+    box-shadow: none;
+}
+
+.endTimeContainer {
+    margin-left: -125px;
 }
